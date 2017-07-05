@@ -1,0 +1,15 @@
+{{yield}}
+{{#each posts as |post|}}
+  <article class="listing">
+    <h3>{{post.title}}</h3>
+    <div class="detail owner">
+      <span>Text:</span> {{post.text}}
+    </div>
+    <div class="detail location">
+      <span>Date:</span> {{post.datetime}}
+    </div>
+    <div class="detail bedrooms">
+      <img width="100px" height="100px" src="{{post.image}}" />
+    </div>
+  </article>
+{{/each}}

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="menu">
+    {{#link-to 'index'}}
+      <h1 class="left">
+        <em>Blogs</em>
+      </h1>
+    {{/link-to}}
+
+    {{#if session.isAuthenticated}}
+      <a {{action 'invalidateSession'}}>Logout</a>
+    {{else}}
+      {{#link-to 'login'}}Login{{/link-to}}
+    {{/if}}
+
+  </div>
+  <div class="body">
+    {{outlet}}
+  </div>
+</div>
