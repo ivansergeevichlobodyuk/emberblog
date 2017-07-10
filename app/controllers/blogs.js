@@ -10,15 +10,15 @@ export default Ember.Controller.extend({
     init(){
       console.log('search ', this.get('search'));
       if ( this.search ){
-        this.set('list',this.get('model').filterBy('text',param));
+        this.set('list',this.get('model').filterBy('text',this.get('search')));
       }else{
         this.list = this.store.findAll('blog');
       }
     },
 
     actions:{
-      search(param){
 
+      search(param){
         console.log( 'alerttt', param );
         if (param){
           this.set('list',this.get('model').filterBy('text',param));
@@ -26,7 +26,13 @@ export default Ember.Controller.extend({
         }else{
           this.set('list',this.get('model'));
         }
-      }
+      },
+
+      invalidateSession() {
+        this.get('session').invalidate();
+
+      },
+
     }
 
 });
