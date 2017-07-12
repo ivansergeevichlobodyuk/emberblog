@@ -3,36 +3,27 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   session: Ember.inject.service('session'),
-
   queryParams: ['search'],
-    list: null,
-    search: null,
-    init(){
-      console.log('search ', this.get('search'));
-      if ( this.search ){
-        this.set('list',this.get('model').filterBy('text',this.get('search')));
-      }else{
-        this.list = this.store.findAll('blog');
-      }
-    },
+  search: null,
 
-    actions:{
+  list: Ember.computed('search','model',function(){
+    var search = this.get('search');
+    if (search){
+      return this.get('model').filterBy('text',search);
+    }else{
+      return this.get('model');
+    }
+  }),
 
-      search(param){
-        console.log( 'alerttt', param );
+  actions:{
+    search(param){
         if (param){
           this.set('list',this.get('model').filterBy('text',param));
           this.set('search',param);
         }else{
           this.set('list',this.get('model'));
         }
-      },
-
-      invalidateSession() {
-        this.get('session').invalidate();
-
-      },
-
-    }
+    },
+  }
 
 });
