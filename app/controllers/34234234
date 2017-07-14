@@ -1,0 +1,12 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+
+  article: null,
+
+
+  // beforeModel(transition){
+  //   console.log('transition >> ', transition.blog_id);
+  // }
+
+});
